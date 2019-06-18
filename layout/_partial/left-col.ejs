@@ -1,0 +1,116 @@
+<% var defaultBg = '#4d4d4d'; %>
+<div class="overlay" style="background: <%= theme.style && theme.style.header ? theme.style.header : defaultBg %>"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="<%=theme.root%>" class="profilepic">
+			<img src="<%=theme.avatar%>" class="js-avatar">
+		</a>
+		<hgroup>
+		  <h1 class="header-author"><a href="<%=theme.root%>"><%=theme.author%></a></h1>
+		</hgroup>
+		<% if (theme.subtitle){ %>
+		<p class="header-subtitle"><%=theme.subtitle%></p>
+		<%}%>
+
+		<nav class="header-menu">
+			<ul>
+			<% for (var i in theme.menu){ %>
+				<li><a href="<%- url_for(theme.menu[i]) %>"><%= i %></a></li>
+	        <%}%>
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+    		<% for (var i in theme.smart_menu){ %>
+    			<% if(theme.smart_menu[i]){ %>
+    			<a q-on="click: openSlider(e, '<%-i%>')" href="javascript:void(0)"><%= theme.smart_menu[i] %></a>
+    			<% } %>
+            <%}%>
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				<% for (var i in theme.subnav){ %>
+					<a class="<%= i %>" target="_blank" href="<%- url_for(theme.subnav[i]) %>" title="<%= i %>"><i class="icon-<%= i %>"></i></a>
+		        <%}%>
+			</div>
+		</nav>
+	</header>
+
+
+<% if(theme.aplayer.enable) { %>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+<div id="aplayer" style="position:absolute;left:0;bottom:0;"></div>
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/color-thief-don@2.0.2/src/color-thief.js"></script>
+<script>
+  const ap = new APlayer({
+    container: document.getElementById('aplayer'),
+    autoplay: true, //自动播放
+    listFolded: true, //播放列表默认折叠
+    listMaxHeight: 90, //播放列表最大高度
+    order: 'list', //音频循环顺序, 可选值: 'list', 'random'
+    loop: 'all', //音频循环播放, 可选值: 'all', 'one', 'none'
+    theme: '#e9e9e9', //切换音频时的主题色，优先级低于audio.theme
+    preload: 'none', //音频预加载，可选值: 'none', 'metadata', 'auto'
+    mutex: true, //互斥，阻止多个播放器同时播放，当前播放器播放时暂停其他播放器
+    lrcType: 3, //歌词格式，可选值：3（LRC文件歌词格式），1（JS字符串歌词格式）
+    volume: 0.7, //默认音量，请注意播放器会记忆用户设置，用户手动设置音量后默认音量即失效
+    fixed: false, //吸底模式（fixed:true），迷你模式（mini:true），普通模式（注释此行或者设置fixed:false）
+    audio: [
+	
+	  
+	{
+        name: '青衣',
+        artist: 'W.K',
+        lrc: '/blog/assets/downloads/lrc/青衣-W.K.lrc',
+        cover: 'http://p2.music.126.net/izdGjlRlcR3sx26OXZOiHw==/6631154628171782.jpg?param=300x300',
+        url: 'http://dl.stream.qqmusic.qq.com/M500002GnCOp11uJUw.mp3?vkey=3D0C95C63B1B65A841EB6D308086C2804B4EA3DDA3CBE27B02F31595BB4AC32130D88B2FD5B76660877C84FC2A868AC16052A994F0B966FA&guid=5150825362&fromtag=1'
+      },
+	  {
+        name: '拜无忧',
+        artist: '萧忆情',
+        lrc: '/blog/assets/downloads/lrc/拜无忧-萧忆情.lrc',
+        cover: 'http://y.gtimg.cn/music/photo_new/T002R300x300M000000LVeRc2sWuC6.jpg',
+        url: 'http://dl.stream.qqmusic.qq.com/M500003qsl3k2VUS18.mp3?vkey=A910ACE1DCF5AA0E56BC175F7293F3A0D5C2280BB690E1B5785CB8F277B69311F9720FA6ED856BB5DDCD032C012E1DD101D9F7F29BB237E3&guid=5150825362&fromtag=1'
+      },
+	{
+        name: '归来去兮',
+        artist: '花粥',
+        lrc: '/blog/assets/downloads/lrc/归去来兮-花粥.lrc',
+        cover: 'http://p1.music.126.net/H6dt7IgvXNWhRM_w7XbcqQ==/109951163990575387.jpg?param=300x300',
+        url: 'http://m10.music.126.net/20190614161538/0a89372a31121a3f06c035b1c84f352e/ymusic/510f/5659/510b/fe1f2bda3ca3bd68ad48fa2b82f1d7a1.mp3'
+      },
+	{
+        name: '少年你在哪里',
+        artist: '花粥',
+        lrc: '/blog/assets/downloads/lrc/少年你在哪里-花粥.lrc',
+        cover: 'http://y.gtimg.cn/music/photo_new/T002R300x300M000002gGomu431vDQ.jpg',
+        url: 'http://dl.stream.qqmusic.qq.com/M50000375WpP4Iq9x2.mp3?vkey=9CF2FA24DEB2D77BFC81801C118FE4A283B6018E45AAFB19EC4921145C29B75D7715249E28B5A3B55B8A6EFEE669653799D606ED97AAE049&guid=5150825362&fromtag=1'
+      },{
+        name: '我的一个道姑朋友',
+        artist: 'LON',
+        lrc: '/blog/assets/downloads/lrc/我的一个道姑朋友-LON.lrc',
+        cover: 'http://y.gtimg.cn/music/photo_new/T002R300x300M000002BMEC42fM8S3.jpg',
+        url: 'http://dl.stream.qqmusic.qq.com/M500001YnPGT28chWa.mp3?vkey=8EB0AA09E69F8E8B52B88D186D3E91E2845921ACF5D5DDBC29064B9A1811342C3DB58E756CB50140FD5500DFA248CEEE6373B6175F498B6D&guid=5150825362&fromtag=1'
+      }
+    ]
+  });
+
+  //实现切换音频时，根据音频的封面图片自适应主题色
+  const colorThief = new ColorThief();
+  const setTheme = (index) => {
+    if (!ap.list.audios[index].theme) {
+      colorThief.getColorAsync(ap.list.audios[index].cover, function(color) {
+        ap.theme(`rgb(${color[0]}, ${color[1]}, ${color[2]})`, index);
+      });
+    }
+  };
+  setTheme(ap.list.index);
+  ap.on('listswitch', (data) => {
+    setTheme(data.index);
+  });
+</script>
+<% } %>
+
+</div>
+
+
